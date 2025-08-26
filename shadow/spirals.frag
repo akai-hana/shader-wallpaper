@@ -14,13 +14,13 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform vec2 u_resolution;
+uniform vec2 mouse;
+uniform float time;
+uniform vec2 resolution;
 
 
 #define TAU 6.2831853071
-#define dt mod(u_time / 7.,TAU)
+#define dt mod(time / 7.,TAU)
 
 mat2 rot (float a)
 {return mat2(cos(a),sin(a),-sin(a),cos(a));}
@@ -65,7 +65,7 @@ float SDF (vec3 p)
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-    vec2 uv = (2.*fragCoord-u_resolution.xy)/u_resolution.y;
+    vec2 uv = (2.*fragCoord-resolution.xy)/resolution.y;
     //uv = floor(uv * 200.) / 200.;
 
     vec3 ro = vec3(uv*4.,-20.),

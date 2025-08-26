@@ -2,14 +2,14 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform vec2 u_resolution;
+uniform vec2 mouse;
+uniform float time;
+uniform vec2 resolution;
 
 void mainImage(out vec4 c, vec2 p) {
-    vec2 uv = .275 * p.xy / u_resolution.y;
+    vec2 uv = .275 * p.xy / resolution.y;
     //uv = floor(uv * 1500.) / 1500.;
-    float t = u_time*.001 + 3., k = cos(t), l = sin(t);        
+    float t = time*.001 + 3., k = cos(t), l = sin(t);        
     
     float s = .2;
     for(int i=0; i<64; ++i) {
