@@ -2,18 +2,18 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform vec2 u_resolution;
+uniform vec2 mouse;
+uniform float time;
+uniform vec2 resolution;
 
 float torusSDF(vec3 p, float radius){  
      return length( vec2( length(p.xz) - 1., p.y) ) - radius;   
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-    vec2 uv = (fragCoord - 0.5 * u_resolution.xy)/u_resolution.y;
+    vec2 uv = (fragCoord - 0.5 * resolution.xy)/resolution.y;
     //uv = floor(uv * 200.) / 200.;
-    float t = u_time * .02;
+    float t = time * .02;
     
     uv *= mat2(cos(t),-sin(t), sin(t), cos(t)); // camera rotation
     
@@ -34,7 +34,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     float radius = mix(.3, .9, sin(t*.5)*.5+.5);//radius of toroid
     // Ray Marcher
-    float dS, dO; 
+    float dS, dO = 0.0; 
     vec3 p; 
     for(int i = 0; i < 100; i++){
         p = ro + dO*rd;

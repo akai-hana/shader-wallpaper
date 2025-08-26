@@ -4,9 +4,9 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform vec2 u_resolution;
+uniform vec2 mouse;
+uniform float time;
+uniform vec2 resolution;
 
 float sdBox(vec3 o, vec3 r, vec3 p) {
     vec3 q = abs(p-o)-r;
@@ -42,18 +42,18 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 rep = vec2(1.0);
     float pi = 3.141592653;
     
-    vec2 uv = fragCoord.xy/u_resolution.xy;
+    vec2 uv = fragCoord.xy/resolution.xy;
     uv = fract(uv*rep);
     uv = uv * 2.0 - 1.0;
-    uv.x *= (u_resolution.x*rep.y) / (u_resolution.y*rep.x);
+    uv.x *= (resolution.x*rep.y) / (resolution.y*rep.x);
 
     //uv = floor(uv * 200.) / 200.;
 
-    vec3 ro = vec3(.5, .5, fract(u_time/5.));
+    vec3 ro = vec3(.5, .5, fract(time/5.));
     vec3 rd = normalize(vec3(uv, 1));
 
-    rd = rotated_x(rd, (sin(u_time / 20.) * 500. /u_resolution.y)*(pi/2.));
-    rd = rotated_y(rd, (cos(u_time / 10.) * 300. /u_resolution.x-.5)*(pi/2.));
+    rd = rotated_x(rd, (sin(time / 20.) * 500. /resolution.y)*(pi/2.));
+    rd = rotated_y(rd, (cos(time / 10.) * 300. /resolution.x-.5)*(pi/2.));
 
     float t = 0.0;
     float a;
