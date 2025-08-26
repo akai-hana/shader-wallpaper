@@ -2,9 +2,9 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform vec2 u_resolution;
+uniform vec2 mouse;
+uniform float time;
+uniform vec2 resolution;
 
 // simple noise from: https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83
 float rand(float n) {
@@ -18,14 +18,14 @@ float noise(float p) {
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-    vec2 uv = (2. * fragCoord - u_resolution.xy) / u_resolution.y;
+    vec2 uv = (2. * fragCoord - resolution.xy) / resolution.y;
     //uv = floor(uv * 200.) / 200.;
-    uv.x += 0.2 * sin(u_time / 5. + uv.y * 4.);
+    uv.x += 0.2 * sin(time / 5. + uv.y * 4.);
     float numLines = 15. + fragCoord.y * 0.05;
     float colNoise = noise(0.6 * uv.x * numLines);
     float colStripes = 0.5 + 0.5 * sin(uv.x * numLines * 0.75);
-    float col = mix(colNoise, colStripes, 0.25 * sin(u_time / 10.));
-    float aA = 1./5.;//(u_resolution.x * 0.005);
+    float col = mix(colNoise, colStripes, 0.25 * sin(time / 10.));
+    float aA = 1./5.;//(resolution.x * 0.005);
     col = smoothstep(0.5 - aA, 0.5 + aA, col);
     fragColor = vec4(vec3(col),1.0);
     float avg = (fragColor.r + fragColor.g + fragColor.b) / 3.0;
