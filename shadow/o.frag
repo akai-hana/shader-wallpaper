@@ -1,6 +1,6 @@
 // Original shader author: poopsock
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform float time;

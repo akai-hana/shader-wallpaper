@@ -1,7 +1,7 @@
 // credits to DiggerDwarf at https://www.shadertoy.com/view/l3BXRV
 
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform vec2 mouse;
