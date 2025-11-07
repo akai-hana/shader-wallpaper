@@ -11,7 +11,7 @@
 // Shader made for Everyday ATI challenge
 
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform vec2 mouse;
