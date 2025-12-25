@@ -1,3 +1,3 @@
 #!/bin/sh
-~/git/shader-wallpaper/shadow/scripts/shader-stop.sh &
-~/git/shader-wallpaper/shadow/scripts/shader-start.sh &
+~/eudaimonia/shader-wallpaper/shadow/scripts/shader-stop.sh &
+~/eudaimonia/shader-wallpaper/shadow/scripts/shader-start.sh &
