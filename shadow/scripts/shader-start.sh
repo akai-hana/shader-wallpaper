@@ -1,5 +1,4 @@
 #!/bin/sh
-
 cd ~/git/shadow || exit 1
 
 # Random selection using sort with random key
