@@ -1,3 +1,3 @@
 #!/bin/sh
-pkill python
-pkill picom
+pkill -9 python
+pkill -9 picom
