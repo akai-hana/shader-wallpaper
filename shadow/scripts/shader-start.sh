@@ -10,4 +10,5 @@ DRI_PRIME=1 poetry run shadow "$SHADER" -m root -f 24 -q 1 &
 
 # if picom isn't running, exec it.
 # no point in having the wallpaper on and no transparency from compositing
-sleep 0.1s && picom &
+sleep 0.1s
+picom &
