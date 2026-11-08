@@ -82,16 +82,12 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     vec2 uv = (fragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
     vec3 p = vec3(uv.x,uv.y,1.0) * 0.2;
 
-    vec3 color = milkBlack;
-
     float f = fbm(p);
-    f = fract((f - t * 0.1) * 10.);
-	f = floor(f + 0.1);
-    if (f > 0.5) {
-		color = milkWhite;
-	}
-	
-	//color = vec3(1.) * f;
+    float x = (f - t * 0.1) * 10.;
+    float s = fract(x + 0.55) - 0.5;   // 0 at the centre of each band
+    float w = fwidth(x) * 0.75;        // roughly one pixel in band space
+    float cov = 1.0 - smoothstep(0.05 - w, 0.05 + w, abs(s));
+    vec3 color = mix(milkBlack, milkWhite, cov);
 
 	fragColor = vec4(color, 1.0);
 }
